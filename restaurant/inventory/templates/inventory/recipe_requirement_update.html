@@ -1,0 +1,43 @@
+{% extends 'inventory_base.html' %}
+{% load static %}
+
+{% block title %} Menu {% endblock %}
+
+{% block head %}{% endblock %}
+
+{% block content %}
+    <h2 class="page-title">Update Ingredient</h2>
+    <form action="" method="post">
+        {% csrf_token %}
+        <table>
+            <thead>
+                <tr>
+                    <td colspan="2">
+                        Update Ingredient on {{item.name}}
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{form.ingredient.label}}</td>
+                    <td>{{form.ingredient}}</td>
+                </tr>
+                <tr>
+                    <td>{{form.quantity.label}}</td>
+                    <td>{{form.quantity}}</td>
+                </tr>
+                <tr>
+                    <td>{{form.unit.label}}</td>
+                    <td>{{form.unit}}</td>
+                </tr>
+            </tbody>   
+            <tfoot>
+                <tr>
+                    <td colspan="2">
+                        <input type="submit" value="Update">
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </form>
+{% endblock %}

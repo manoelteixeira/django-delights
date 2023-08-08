@@ -1,0 +1,19 @@
+{% extends 'inventory_base.html' %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="{% static 'inventory/style.css' %}" />
+{% endblock %}
+
+{% block title %}Purchases{% endblock %}
+
+{% block content %}
+    <h2 class="page-title">Add Purchase</h2>
+    <form action="" method="post">
+        <div>
+            {% csrf_token %}
+            {{form.as_p}}
+            <input type="submit" value="Submit">
+        </div>
+    </form>
+{% endblock %}

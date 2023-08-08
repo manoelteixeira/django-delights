@@ -1,0 +1,38 @@
+{% extends '../inventory_base.html' %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="{% static 'inventory/style.css' %}" />
+{% endblock %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+    <form action="" method="post">
+        {% csrf_token %}
+        <table>
+            <thead>
+                <tr>
+                    <td colspan="2">Login</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{form.username.label}}</td>
+                    <td>{{form.username}}</td>
+                </tr>
+                <tr>
+                    <td>{{form.password.label}}</td>
+                    <td>{{form.password}}</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="2">
+                        <input type="submit" value="Submit">
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </form>
+{% endblock %}

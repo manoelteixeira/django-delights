@@ -1,0 +1,132 @@
+:root{
+  --color-primary: #fff6d3;
+  --color-seconday: #eb6b6f;
+  --color-accent-1: #7c3f58;
+  --color-accent-2: #f9a875; 
+   
+}
+
+body{
+  background-color: var(--color-primary);
+}
+
+
+/* Page Comomn elemensts */
+.page-title{
+  text-align: center;
+  padding-top: 10px;
+}
+
+
+/* Navbar */
+.navbar{
+  display: flex;
+  align-items: center;
+  background-color: var(--color-seconday);
+}
+
+.navbar h1 {
+  margin-left: 10px;
+  margin-right: auto;
+}
+
+.navbar ul{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.navbar li{
+  float: left;
+}
+
+.navbar li a{
+  display: block;
+  text-align: center;
+  padding: 14px;
+  margin-right: 5px;
+  text-decoration: none;
+  color: var(--color-primary);
+}
+
+.navbar li a:hover{
+  background-color: var(--color-accent-1);
+  border-radius: 5px;
+}
+
+.navbar .active{
+background-color:var(--color-accent-1);
+border-radius: 5px;
+}
+
+/* Tables */
+.data-table{
+  width: auto;
+  margin-top: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.data-table tbody tr:hover{
+  background-color: var(--color-accent-2);
+}
+
+.data-table tbody td{
+  padding-left: 40px;
+}
+
+.data-table thead td{
+  border-bottom: 2px solid black;
+  font-weight: bold;
+  padding-bottom: 5px;
+}
+
+
+.data-table tfoot td{
+  border-top: 2px solid black;
+  padding-top: 25px;
+}
+
+/* Buttons */
+button a{
+  text-decoration: none;
+  color: black;
+}
+
+form table{
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 10px;
+}
+
+form table thead{
+  font-size: larger;
+  font-weight: bolder;
+  text-align: center;
+}
+
+form table tfoot{
+  text-align: center;
+}
+
+form table thead td{
+  padding-bottom: 15px;
+}
+
+form table tbody td{  
+  padding-bottom: 5px;
+  font-weight: bold;
+}
+
+form table tfoot td{
+  padding-top: 10px;
+}
+
+/* Ingredient */
+.ingredient-not-available{
+  color: red;
+}

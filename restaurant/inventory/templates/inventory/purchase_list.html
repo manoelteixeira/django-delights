@@ -1,0 +1,66 @@
+{% extends 'inventory_base.html' %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="{% static 'inventory/style.css' %}" />
+{% endblock %}
+
+{% block title %}Purchases{% endblock %}
+
+{% block content %}
+    <h2 class="page-title">Purchases</h2>
+    <table class="data-table">
+        <thead>
+            <tr>
+                <td>Menu Item</td>
+                <td>Price</td>
+                <td>Time</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in purchases %}
+            <tr>
+                <td>{{item.menu_item.name}}</td>
+                <td>{{item.menu_item.price}}</td>
+                <td>{{item.timestamp}}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3">
+                    <button class="btn-add">
+                        <a href="{% url 'inventory:purchase_create' %}">
+                            Add new Purchase
+                        </a>
+                    </button>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+    
+<br><br><br>
+
+    <table class="data-table">
+        <thead>
+            <tr>
+                <td>Revenue</td>
+                <td>Total Cost</td>
+                <td>Profit</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    {{revenue|floatformat:2}}
+                </td>
+                <td>
+                    {{total_cost|floatformat:2}}
+                </td>
+                <td>
+                    {{profit|floatformat:2}}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}

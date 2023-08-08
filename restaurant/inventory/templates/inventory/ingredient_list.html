@@ -1,0 +1,55 @@
+{% extends 'inventory_base.html' %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="{% static 'inventory/style.css' %}" />
+{% endblock %}
+
+{% block title %}Ingredients{% endblock %}
+
+{% block content %}
+    <h2 class="page-title">Ingredits Inventory</h2>
+    
+    <table class="data-table">
+        <thead>
+            <tr>
+                <td>Ingredient</td>
+                <td>Type</td>
+                <td>Quantity</td>
+                <td>Price</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for ingredient in ingredient_list %}
+                <tr>
+                    <td>{{ingredient.name}}</td>
+                    <td>{{ingredient.type}}</td>
+                    <td>{{ingredient.quantity|floatformat:2}} {{ingredient.unit}}</td>
+                    <td>{{ingredient.unit_price}} per {{ingredient.unit}}</td>
+                    <td>
+                        <button class="btn-edit">
+                            <a href="{% url 'inventory:ingredient_update' ingredient.id %}">Edit</a>
+                        </button>
+                    </td>
+                    <td>
+                        <button class="btn-delete">
+                            <a href="{% url 'inventory:ingredient_delete' ingredient.id %}">Delete</a>
+                        </button>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="6">
+                    <button class="btn-add">
+                        <a href="{% url 'inventory:ingredient_create' %}">Add Ingredient</a>
+                    </button>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+    
+{% endblock %}

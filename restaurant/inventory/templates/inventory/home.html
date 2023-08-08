@@ -1,0 +1,62 @@
+{% extends 'inventory_base.html' %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="{% static 'inventory/style.css' %}" />
+{% endblock %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    <h2 class="page-title">Menu</h2>
+    <table class="data-table">
+        <thead>
+            <tr>
+                <td>Recipe</td>
+                <td>Ingredients</td>
+                <td>Availabe</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for recipe in menu_items %}
+                <tr>
+                    <td>{{recipe.name}}</td>
+                    <td>
+                        {% for item in recipe.get_ingredients %}
+                            {% if not item.is_available %}
+                                <span class="ingredient-not-available">{{item.ingredient.name}} </span>
+                            {% else %}
+                            {{item.ingredient.name}} 
+                            {% endif%}
+                        {% endfor %}
+                    </td>
+                    <td>
+                        {% if recipe.is_available %}
+                            Available
+                        {% else %}
+                            Not available
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <br><br>
+    <h2 class="page-title">Purchases</h2>
+    <table class="data-table">
+        <thead>
+            <tr>
+                <td>Item</td>
+                <td>Time</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in purchases %}
+                <tr>
+                    <td>{{item.menu_item.name}}</td>
+                    <td>{{item.timestamp}}</td>
+                </tr>
+            {% endfor%}
+        </tbody>
+    </table>
+{% endblock %}

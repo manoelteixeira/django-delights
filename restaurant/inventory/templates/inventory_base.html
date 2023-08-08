@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="{% static 'inventory/style.css' %}" />
+    {% block head %} {% endblock %}
+    <title>Django Delights | {% block title %} {% endblock %}</title>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar">
+            <h1>Django Delights</h1>
+            {% if user.is_authenticated %}
+              {% with request.resolver_match.url_name as url_name %}
+              <ul>
+                  <li><a class="{% if 'home' in url_name %}active{% endif %}" href="{% url 'inventory:home'%} ">Home</a></li>
+                  <li><a class="{% if 'ingredient' in url_name %}active{% endif %}" href="{% url 'inventory:ingredient_list' %} ">Ingredients</a></li>
+                  <li><a class="{% if 'menu' in url_name %}active{% endif %}" href="{% url 'inventory:menu_item_list' %} ">Menu</a></li>
+                  <li><a class="{% if 'purchase' in url_name %}active{% endif %}" href="{% url 'inventory:purchase_list' %}">Purchases</a></li>
+                  <li><a href="{% url 'inventory:logout' %}">Logout</a></li>
+              </ul>
+              {% endwith %}
+            {% endif %}
+        </nav>
+    </header>
+    <div class="content">
+      {% block content %} {% endblock %}
+    </div>
+  </body>
+</html>

@@ -1,0 +1,59 @@
+{% extends 'inventory_base.html' %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="{% static 'inventory/style.css' %}" />
+{% endblock %}
+
+{% block title %}Menu{% endblock %}
+
+{% block content %}
+    <h2 class="page-title">Menu Item</h2>
+    
+    <table class="data-table">
+        <thead>
+            <tr>
+                <td>Item</td>
+                <td>Cost</td>
+                <td>Price</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>          
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in menu_item_list %}
+            <tr>
+                <td>
+                    <a href="{% url 'inventory:menu_item_detail' item.id %}">
+                        {{item.name}}
+                    </a>
+                </td>
+                <td>{{item.get_cost|floatformat:2}}</td>
+                <td>{{item.price}}</td>
+                <td>
+                    <button class="btn-edit">
+                        <a href="{% url 'inventory:menu_item_update' item.id %}">Edit</a>
+                    </button>
+                </td>
+                <td>
+                    <button class="btn-edit">
+                        <a href="{% url 'inventory:menu_item_delete' item.id %}">Delete</a>
+                    </button>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="5">
+                    <button class="btn-add">
+                        <a href="{% url 'inventory:menu_item_create' %}">Add new Item to Menu</a>
+                    </button>
+                    
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+
+
+{% endblock %}

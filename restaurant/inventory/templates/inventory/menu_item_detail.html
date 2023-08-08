@@ -1,0 +1,54 @@
+{% extends 'inventory_base.html' %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="{% static 'inventory/style.css' %}" />
+{% endblock %}
+
+{% block title %}Menu{% endblock %}
+
+{% block content %}
+    <h2 class="page-title">{{menuitem}} Detail</h2>
+    
+    {% if ingredients_requirements %}
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <td>Ingredient</td>
+                    <td>Quantity</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in ingredients_requirements %}
+                    <tr>
+                        <td>{{item.ingredient.name}}</td>
+                        <td>{{item.quantity}}/{{item.unit}}</td>
+                        <td>
+                            <button class="btn-edit">
+                                <a href="{% url 'inventory:recipe_requirement_update' menuitem.id item.pk %}">Edit</a>
+                            </button>
+                        </td>
+                        <td>
+                            <button class="btn-edit">
+                                <a href="{% url 'inventory:recipe_requirement_delete' menuitem.id item.pk %}">Delete</a>
+                            </button>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="4">
+                        <button class="btn-add">
+                            <a href="{% url 'inventory:recipe_requirement_create' menuitem.id %}">Add Ingredient</a>
+                        </button>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    {% endif %}
+    
+
+{% endblock %}
